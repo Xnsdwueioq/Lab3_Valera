@@ -499,64 +499,6 @@ def to_cancel_search():
 
 
 # ----------------------------------------FRAME_LIST--------------------------------------------------------------
-# .....................STATIC WIDGETS...........................
-# Указатель выбранной машины, изначально ничего (НЕИХУЯ) там нет
-selected_car = False
-
-# Указывает открыто ли окно поиска, для устранения дубляжей
-search_tk_check = False
-
-# Виджет Label для отображения текущего состояния Entry
-label_list = Label(frame_list, text='Введите номер авто:', font=("Arial", 12))
-label_list.pack()
-
-# /////Фрейм для поля ввода и крестика//////////
-frame_list_entry_cancel = ttk.Frame(frame_list)
-frame_list_entry_cancel.pack()
-
-# Виджет Entry и инструкции для валидации
-check = (root.register(is_valid), "%P")
-entry_list = Entry(frame_list_entry_cancel, validate="key", validatecommand=check, width=29, font=("Arial", 12))
-entry_list.grid(row=1, column=1)
-
-# Виджет Button в виде крестика, для отмены
-button_list_cancel = Button(frame_list_entry_cancel, text='X', command=to_cancel_search, state='disabled', width=3,
-                            height=1)
-button_list_cancel.grid(row=1, column=2)
-# /////////////////////////////////////////////
-
-# ////Фрейм для кнопки ВЫБРАТЬ и ПОИСК, УДАЛИТЬ и УДАЛИТЬ ВСЁ, ДОБАВИТЬ АВТО////////
-frame_list_select_search = ttk.Frame(frame_list)
-frame_list_select_search.pack()
-
-# РЕАЛИЗАЦИЯ КНОПКИ "ВЫБРАТЬ" (выбирается авто на которое будет работать вкладка ИЗМЕНИТЬ, а также кнопка "УДАЛИТЬ")
-button_list_choose = Button(frame_list_select_search, text="Выбрать", command=to_select_auto, width=15,
-                            font=("Arial", 12))
-button_list_choose.grid(row=1, column=1)
-
-# РЕАЛИЗАЦИЯ КНОПКИ "ПОИСК" (меняет базу данных, делает ток из нужных машин, отмена крестиком)
-button_list_search = Button(frame_list_select_search, text='Поиск', command=open_search_tk, width=15,
-                            font=("Arial", 12))
-button_list_search.grid(row=1, column=2)
-
-# РЕАЛИЗАЦИЯ КНОПКИ "УДАЛИТЬ" (удаляет выбранное авто)
-button_list_delete = Button(frame_list_select_search, text="Удалить", command=to_delete_auto, width=15,
-                            font=("Arial", 12))
-button_list_delete.grid(row=2, column=1)
-
-# РЕАЛИЗАЦИЯ КНОПКИ "УДАЛИТЬ ВСЁ" (удаляет все машины)
-button_list_delete_all = Button(frame_list_select_search, text="Удалить всё", command=to_delete_all, width=15,
-                                font=("Arial", 12))
-button_list_delete_all.grid(row=2, column=2)
-
-# РЕАЛИЗАЦИЯ КНОПКИ "ДОБАВИТЬ АВТО" (добавляет авто со всеми "-")
-button_list_add = Button(frame_list_select_search, text="Добавить авто", command=to_add_auto, width=32,
-                         font=("Arial", 12))
-button_list_add.grid(row=3, columnspan=2, column=1)
-
-
-# /////////////////////////////////////////////////////////////////
-
 
 # .....................DYNAMIC WIDGETS...........................
 # Принимает на вход список виджетов, которые надо очистить
@@ -613,6 +555,65 @@ def open_frame_list(CLEAN_ARRAY):
 
 # Изначально размещаем стартовую таблицу с пустым мусорщиком (виджетов ранее не было)
 CLEAN_ARRAY = open_frame_list([])
+
+# //////////////////////////////////////////////////////////////////
+
+
+
+# .....................STATIC WIDGETS...........................
+# Указатель выбранной машины, изначально ничего (НЕИХУЯ) там нет
+selected_car = False
+
+# Указывает открыто ли окно поиска, для устранения дубляжей
+search_tk_check = False
+
+# Виджет Label для отображения текущего состояния Entry
+label_list = Label(frame_list, text='Введите номер авто:', font=("Arial", 12))
+label_list.pack()
+
+# /////Фрейм для поля ввода и крестика//////////
+frame_list_entry_cancel = ttk.Frame(frame_list)
+frame_list_entry_cancel.pack()
+
+# Виджет Entry и инструкции для валидации
+check = (root.register(is_valid), "%P")
+entry_list = Entry(frame_list_entry_cancel, validate="key", validatecommand=check, width=29, font=("Arial", 12))
+entry_list.grid(row=1, column=1)
+
+# Виджет Button в виде крестика, для отмены
+button_list_cancel = Button(frame_list_entry_cancel, text='X', command=to_cancel_search, state='disabled', width=3,
+                            height=1)
+button_list_cancel.grid(row=1, column=2)
+# /////////////////////////////////////////////
+
+# ////Фрейм для кнопки ВЫБРАТЬ и ПОИСК, УДАЛИТЬ и УДАЛИТЬ ВСЁ, ДОБАВИТЬ АВТО////////
+frame_list_select_search = ttk.Frame(frame_list)
+frame_list_select_search.pack()
+
+# РЕАЛИЗАЦИЯ КНОПКИ "ВЫБРАТЬ" (выбирается авто на которое будет работать вкладка ИЗМЕНИТЬ, а также кнопка "УДАЛИТЬ")
+button_list_choose = Button(frame_list_select_search, text="Выбрать", command=to_select_auto, width=15,
+                            font=("Arial", 12))
+button_list_choose.grid(row=1, column=1)
+
+# РЕАЛИЗАЦИЯ КНОПКИ "ПОИСК" (меняет базу данных, делает ток из нужных машин, отмена крестиком)
+button_list_search = Button(frame_list_select_search, text='Поиск', command=open_search_tk, width=15,
+                            font=("Arial", 12))
+button_list_search.grid(row=1, column=2)
+
+# РЕАЛИЗАЦИЯ КНОПКИ "УДАЛИТЬ" (удаляет выбранное авто)
+button_list_delete = Button(frame_list_select_search, text="Удалить", command=to_delete_auto, width=15,
+                            font=("Arial", 12))
+button_list_delete.grid(row=2, column=1)
+
+# РЕАЛИЗАЦИЯ КНОПКИ "УДАЛИТЬ ВСЁ" (удаляет все машины)
+button_list_delete_all = Button(frame_list_select_search, text="Удалить всё", command=to_delete_all, width=15,
+                                font=("Arial", 12))
+button_list_delete_all.grid(row=2, column=2)
+
+# РЕАЛИЗАЦИЯ КНОПКИ "ДОБАВИТЬ АВТО" (добавляет авто со всеми "-")
+button_list_add = Button(frame_list_select_search, text="Добавить авто", command=to_add_auto, width=32,
+                         font=("Arial", 12))
+button_list_add.grid(row=3, columnspan=2, column=1)
 
 # --------------------------------------------FRAME_CHANGE--------------------------------------------------------
 # ..................STATIC WIDGETS..................
